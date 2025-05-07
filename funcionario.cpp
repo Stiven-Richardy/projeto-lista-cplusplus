@@ -1,6 +1,6 @@
 #include <iostream>
 #include <locale.h>
-#include <string>s
+#include <string>
 #include <conio.h>
 
 using namespace std;
@@ -75,9 +75,9 @@ void print(Lista* lista) {
 	
 	while(aux != NULL)
 	{
-		cout << "| Prontuário: " << aux->funcionario->prontuario << endl
+		cout << "| ProntuÃ¡rio: " << aux->funcionario->prontuario << endl
  	 	 	 << "| Nome: " << aux->funcionario->nome << endl
-		 	 << "| Salário: R$" << aux->funcionario->salario << endl
+		 	 << "| SalÃ¡rio: R$" << aux->funcionario->salario << endl
 			 << string(37, '-') << endl;
         total += aux->funcionario->salario;
 		aux = aux->ant;
@@ -92,9 +92,9 @@ int main(int argc, char** argv) {
 	listaFuncionario = init();
 	
 	cout << string(37, '=') << endl
-	 	 << string(8, ' ') << "BANCO DE FUNCIONÁRIOS" << endl
+	 	 << string(8, ' ') << "BANCO DE FUNCIONÃRIOS" << endl
        	 << string(37, '=') << endl
-       	 << "| Bem-vindo ao banco de funcionários \n| da Stiven's Company." << endl
+       	 << "| Bem-vindo ao banco de funcionÃ¡rios \n| da Stiven's Company." << endl
 		 << string(37, '=') << endl
 		 << "Pressione qualquer tecla..." << endl;
 	_getch();
@@ -103,15 +103,15 @@ int main(int argc, char** argv) {
 	int opcao;
 	while(opcao != 0) {
 		cout << string(37, '=') << endl
-			<< string(8, ' ') << "BANCO DE FUNCIONÁRIOS" << endl
+			<< string(8, ' ') << "BANCO DE FUNCIONÃRIOS" << endl
 			<< string(37, '=') << endl
-			<< "| Selecione a opção desejada: \n| 0. Sair \n| 1. Incluir \n| 2. Remover \n| 3. Pesquisar \n| 4. Listar" << endl
+			<< "| Selecione a opÃ§Ã£o desejada: \n| 0. Sair \n| 1. Incluir \n| 2. Remover \n| 3. Pesquisar \n| 4. Listar" << endl
 			<< string(37, '=') << endl
-			<< "Digite o número da opção: ";
+			<< "Digite o nÃºmero da opÃ§Ã£o: ";
 		cin >> opcao;
 		
 		while(opcao < 0 || opcao > 4) {
-			cout << "Opção inválida! Digite novamente: ";
+			cout << "OpÃ§Ã£o invÃ¡lida! Digite novamente: ";
 			cin >> opcao;
 		}
 				
@@ -122,7 +122,7 @@ int main(int argc, char** argv) {
 				system("cls");
 				
 				cout << string(37, '=') << endl
-	 	 	 	 	 << string(8, ' ') << "BANCO DE FUNCIONÁRIOS" << endl
+	 	 	 	 	 << string(8, ' ') << "BANCO DE FUNCIONÃRIOS" << endl
        	 	 	 	 << string(37, '=') << endl
 					 << "| Programa finalizado." << endl
 					 << string(37, '=') << endl;
@@ -136,13 +136,13 @@ int main(int argc, char** argv) {
 				double salario;
 	
 				cout << string(37, '=') << endl
-	 	 	 	 	 << string(8, ' ') << "CADASTRAR FUNCIONÁRIO" << endl
+	 	 	 	 	 << string(8, ' ') << "CADASTRAR FUNCIONÃRIO" << endl
        	 	 	 	 << string(37, '=') << endl
-					 << "| Digite o prontuário: ";
+					 << "| Digite o prontuÃ¡rio: ";
 				cin >> prontuario;
 	
 				while(find(prontuario, listaFuncionario) != NULL) {
-					cout << "| Prontuário em uso, digite novamente: ";
+					cout << "| ProntuÃ¡rio em uso, digite novamente: ";
 					cin >> prontuario;
 				}
 				cin.ignore();
@@ -172,20 +172,20 @@ int main(int argc, char** argv) {
 				system("cls");
 				
 				cout << string(37, '=') << endl
-	 	 	 	 	 << string(9, ' ') << "REMOVER FUNCIONÁRIO" << endl
+	 	 	 	 	 << string(9, ' ') << "REMOVER FUNCIONÃRIO" << endl
        	 	 	 	 << string(37, '=') << endl
-       	 	 	 	 << "| Digite o prontuário: ";
+       	 	 	 	 << "| Digite o prontuÃ¡rio: ";
 				cin >> prontuario;
 				cin.ignore();
 				
 				pesquisar = find(prontuario, listaFuncionario);
 				if(pesquisar == NULL) {
-					cout << "| Prontuário não encontrado." << endl;
+					cout << "| ProntuÃ¡rio nÃ£o encontrado." << endl;
 				} else {
 					listaFuncionario = remove(prontuario, listaFuncionario);
-					cout << "| Prontuário: " << pesquisar->funcionario->prontuario << endl
+					cout << "| ProntuÃ¡rio: " << pesquisar->funcionario->prontuario << endl
 						 << "| Nome: " << pesquisar->funcionario->nome << endl
-						 << "| Funcionário removido." << endl;	
+						 << "| FuncionÃ¡rio removido." << endl;	
 				}
 				cout << string(37, '=') << endl
 				     << "Pressione qualquer tecla..." << endl;
@@ -197,7 +197,7 @@ int main(int argc, char** argv) {
 				system("cls");
 				
 				cout << string(37, '=') << endl
-	 	 	 	 	 << string(8, ' ') << "PESQUISAR FUNCIONÁRIO" << endl
+	 	 	 	 	 << string(8, ' ') << "PESQUISAR FUNCIONÃRIO" << endl
        	 	 	 	 << string(37, '=') << endl
 					 << "| Digite o prontuario: ";
 				cin >> prontuario;
@@ -205,11 +205,11 @@ int main(int argc, char** argv) {
 				
 				pesquisar = find(prontuario, listaFuncionario);
 				if(pesquisar == NULL) {
-					cout << "| Prontuário não encontrado." << endl;
+					cout << "| ProntuÃ¡rio nÃ£o encontrado." << endl;
 				} else {
-					cout << "| Prontuário: " << pesquisar->funcionario->prontuario << endl
+					cout << "| ProntuÃ¡rio: " << pesquisar->funcionario->prontuario << endl
 						 << "| Nome: " << pesquisar->funcionario->nome << endl
-						 << "| Salário: " << pesquisar->funcionario->salario << endl;
+						 << "| SalÃ¡rio: " << pesquisar->funcionario->salario << endl;
 				}
 				
 				cout << string(37, '=') << endl
@@ -223,7 +223,7 @@ int main(int argc, char** argv) {
 				system("cls");
 
 				cout << string(37, '=') << endl
-	 	 	 	 	 << string(8, ' ') << "LISTA DE FUNCIONÁRIOS" << endl
+	 	 	 	 	 << string(8, ' ') << "LISTA DE FUNCIONÃRIOS" << endl
        	 	 	 	 << string(37, '=') << endl;
 				print(listaFuncionario);
 				cout << string(37, '=') << endl
