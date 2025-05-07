@@ -1,4 +1,7 @@
 #include <iostream>
+#include <locale.h>
+#include <string>s
+#include <conio.h>
 
 using namespace std;
 
@@ -69,52 +72,85 @@ void print(Lista* lista) {
 	Lista* aux;
 	aux = lista;
 	double total = 0;
-	cout << "-----------" << endl;
 	
 	while(aux != NULL)
 	{
-		cout << "| Prontuario: " << aux->funcionario->prontuario << endl
+		cout << "| Prontuário: " << aux->funcionario->prontuario << endl
  	 	 	 << "| Nome: " << aux->funcionario->nome << endl
-		 	 << "| R$: " << aux->funcionario->salario << endl;
+		 	 << "| Salário: R$" << aux->funcionario->salario << endl
+			 << string(37, '-') << endl;
         total += aux->funcionario->salario;
 		aux = aux->ant;
 	}
-	cout << "Total: " << total << endl;
-	cout << "-----------" << endl;
+	
+	cout << "Total: R$" << total << endl;
 }
 
 int main(int argc, char** argv) {
+	setlocale(LC_ALL, "");
 	Lista *listaFuncionario;
 	listaFuncionario = init();
-		
+	
+	cout << string(37, '=') << endl
+	 	 << string(8, ' ') << "BANCO DE FUNCIONÁRIOS" << endl
+       	 << string(37, '=') << endl
+       	 << "| Bem-vindo ao banco de funcionários \n| da Stiven's Company." << endl
+		 << string(37, '=') << endl
+		 << "Pressione qualquer tecla..." << endl;
+	_getch();
+	system("cls");
+	
 	int opcao;
 	while(opcao != 0) {
-		cout << "Selecione a opcao: ";
+		cout << string(37, '=') << endl
+			<< string(8, ' ') << "BANCO DE FUNCIONÁRIOS" << endl
+			<< string(37, '=') << endl
+			<< "| Selecione a opção desejada: \n| 0. Sair \n| 1. Incluir \n| 2. Remover \n| 3. Pesquisar \n| 4. Listar" << endl
+			<< string(37, '=') << endl
+			<< "Digite o número da opção: ";
 		cin >> opcao;
 		
+		while(opcao < 0 || opcao > 4) {
+			cout << "Opção inválida! Digite novamente: ";
+			cin >> opcao;
+		}
+				
 		int prontuario;
+		Lista* pesquisar;
 		switch(opcao) {
 			case 0: {
-				cout << "Programa finalizado!" << endl;
+				system("cls");
+				
+				cout << string(37, '=') << endl
+	 	 	 	 	 << string(8, ' ') << "BANCO DE FUNCIONÁRIOS" << endl
+       	 	 	 	 << string(37, '=') << endl
+					 << "| Programa finalizado." << endl
+					 << string(37, '=') << endl;
+					 
 				break;
 			}
 			case 1: {
+				system("cls");
+				
 				string nome;
 				double salario;
 	
-				cout << "Digite o prontuario: ";
+				cout << string(37, '=') << endl
+	 	 	 	 	 << string(8, ' ') << "CADASTRAR FUNCIONÁRIO" << endl
+       	 	 	 	 << string(37, '=') << endl
+					 << "| Digite o prontuário: ";
 				cin >> prontuario;
 	
 				while(find(prontuario, listaFuncionario) != NULL) {
-					cout << "Erro! Tente novamente: ";
+					cout << "| Prontuário em uso, digite novamente: ";
 					cin >> prontuario;
 				}
 				cin.ignore();
 	
-				cout << "Digite o nome: ";
+				cout << "| Digite o nome: ";
 				getline(cin, nome);
 		
-				cout << "Digite o salario: ";
+				cout << "| Digite o salario: ";
 				cin >> salario;
 				cin.ignore();
 				
@@ -124,44 +160,79 @@ int main(int argc, char** argv) {
 				criar->salario = salario;
 				
 				listaFuncionario = insert(criar, listaFuncionario);
-				cout << "Funcionario cadastrado" << endl;	
+				cout << "| Funcionario cadastrado." << endl
+				     << string(37, '=') << endl
+				     << "Pressione qualquer tecla..." << endl;
+				_getch();
+				
+				system("cls");	
 				break;
 			}
 			case 2: {
-				cout << "Digite o prontuario: ";
+				system("cls");
+				
+				cout << string(37, '=') << endl
+	 	 	 	 	 << string(9, ' ') << "REMOVER FUNCIONÁRIO" << endl
+       	 	 	 	 << string(37, '=') << endl
+       	 	 	 	 << "| Digite o prontuário: ";
 				cin >> prontuario;
 				cin.ignore();
 				
-				if(find(prontuario, listaFuncionario) == NULL) {
-					cout << "Erro!" << endl;
+				pesquisar = find(prontuario, listaFuncionario);
+				if(pesquisar == NULL) {
+					cout << "| Prontuário não encontrado." << endl;
 				} else {
 					listaFuncionario = remove(prontuario, listaFuncionario);
-					cout << "Funcionario removido" << endl;	
+					cout << "| Prontuário: " << pesquisar->funcionario->prontuario << endl
+						 << "| Nome: " << pesquisar->funcionario->nome << endl
+						 << "| Funcionário removido." << endl;	
 				}
+				cout << string(37, '=') << endl
+				     << "Pressione qualquer tecla..." << endl;
+				_getch();
+				system("cls");
 				break;
 			}
 			case 3: {
-				cout << "Digite o prontuario: ";
+				system("cls");
+				
+				cout << string(37, '=') << endl
+	 	 	 	 	 << string(8, ' ') << "PESQUISAR FUNCIONÁRIO" << endl
+       	 	 	 	 << string(37, '=') << endl
+					 << "| Digite o prontuario: ";
 				cin >> prontuario;
 				cin.ignore();
 				
-				Lista* pesquisar = find(prontuario, listaFuncionario);
-				
+				pesquisar = find(prontuario, listaFuncionario);
 				if(pesquisar == NULL) {
-					cout << "Erro!" << endl;
+					cout << "| Prontuário não encontrado." << endl;
 				} else {
-					cout << "| Prontuario: " << pesquisar->funcionario->prontuario << endl
- 	 	 	 	 	 	 << "| Nome: " << pesquisar->funcionario->nome << endl
-		 	 	 	 	 << "| R$: " << pesquisar->funcionario->salario << endl;
+					cout << "| Prontuário: " << pesquisar->funcionario->prontuario << endl
+						 << "| Nome: " << pesquisar->funcionario->nome << endl
+						 << "| Salário: " << pesquisar->funcionario->salario << endl;
 				}
+				
+				cout << string(37, '=') << endl
+				     << "Pressione qualquer tecla..." << endl;
+				_getch();
+				
+				system("cls");
 				break;
 			}
 			case 4:{
+				system("cls");
+
+				cout << string(37, '=') << endl
+	 	 	 	 	 << string(8, ' ') << "LISTA DE FUNCIONÁRIOS" << endl
+       	 	 	 	 << string(37, '=') << endl;
 				print(listaFuncionario);
+				cout << string(37, '=') << endl
+					 << "Pressione qualquer tecla..." << endl;
+				_getch();
+				
+				system("cls");
 				break;
 			}
-			default:
-				cout << "Opcao invalida!" << endl;
 		}
 	}
 	
